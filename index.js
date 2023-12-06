@@ -256,3 +256,12 @@ test('Counted unique types are sorted', countRealTypes([{}, null, true, !null, !
 ]);
 
 // Add several positive and negative tests
+testBlock('Additional test for real type');
+
+test('RegExp', getRealType(/a/g), 'regexp');
+
+test('Array', getRealType([]), 'array');
+
+testBlock('Additional test for countRealTypes');
+
+test('Empty array of values', countRealTypes([]), 0);
