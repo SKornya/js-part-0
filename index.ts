@@ -52,7 +52,7 @@ const getType = (value: unknown): string => {
 };
 
 const getTypesOfItems = (arr: unknown[]): string[] => {
-  return arr.map((value) => getType(value));
+  return arr.map(getType);
   // Return array with types of items of given array
 };
 
@@ -101,7 +101,7 @@ const getRealType = (value: unknown): string => {
 
 const getRealTypesOfItems = (arr: unknown[]): string[] => {
   // console.log(arr.map((value) => getRealType(value)));
-  return arr.map((value) => getRealType(value));
+  return arr.map(getRealType);
   // Return array with real types of items of given array
 };
 
@@ -166,7 +166,8 @@ test(
 
 test(
   'Values like a number',
-  allItemsHaveTheSameType([123, 123 / ('a' as any), 1 / 0]),
+  // @ts-expect-error
+  allItemsHaveTheSameType([123, 123 / 'a', 1 / 0]),
   true
   // What the result?
 );
@@ -177,7 +178,8 @@ testBlock('getTypesOfItems VS getRealTypesOfItems');
 
 const knownTypes = [
   42,
-  1 / ('a' as any),
+  // @ts-expect-error
+  1 / 'a',
   1 / 0,
   'string',
   false,
